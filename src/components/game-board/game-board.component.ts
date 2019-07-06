@@ -24,11 +24,17 @@ export class GameBoardComponent implements OnInit {
     if(this.store._board._currentPlayer instanceof Human){
       playedMove = this.store._board._currentPlayer.doMove(this.store._board, column);
       if(playedMove){
-        this.store._timer.reset();
+        this.store._invalidMove = null;
+        if(this.store._board._currentPlayer instanceof Human){
+          this.store._timer.reset();
+          return;
+        }
         setTimeout(() => {
           playedMove = this.aiMove();
-        }, 100);
+        }, 50);
       }
+      else
+        this.store._invalidMove = "Invalid move!";
     }
   }
 
@@ -46,12 +52,20 @@ export class GameBoardComponent implements OnInit {
   }
 
   timerCountDown(){
-    setInterval(() =>{
+    let interval = setInterval(() =>{
+      if(this.store._timer == null){
+        clearInterval(interval);
+        return
+      }
       this.store._timer.tick();
       if(this.store._timer.timeString == 0){
         this.store._board.randomMove();
         this.store._timer.reset();
-      } 
+        setTimeout(() => {
+          if(this.store._board._currentPlayer instanceof AI)
+            this.aiMove();
+        }, 100);
+      }
     }, 1000);
   }
   

@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:300');
+.container, .menu, .nav {
+  position: absolute;
+}
+.container {
+  margin: auto;
+  top: 10%;
+  left: 50%;
+  margin-left: -20px;
+}
+#toggle {
+  display: none;
+}
+.menu {
+    display: inline-block;
+    position: absolute;
+    width: 56px;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 62px;
+    font-family:'Josefin Sans', sans-serif;
+    color: black;
+    cursor: pointer;
+}
+.menu::before,
+.menu::after {
+  position: absolute;
+  transition: 0.4s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+.menu:before {
+  content: "M \00a0 \00a0 \00a0 \00a0 \00a0U";
+  top: -60px;
+  left: -100%;
+  width: 215px;
+}
+.menu:after {
+  content: "N";
+  top: 50px;
+  left: 96%;
+}
+.menu:hover::before,
+.menu:hover::after {
+  top: -4.3px;
+  opacity: 1;
+  transition: 0.2s ease, opacity 0.17s 0.03s ease-in;
+}
+
+.bar {
+  width: 80%;
+  height: 3px;
+  background: black;
+  margin: 0 auto 18px;
+  transition: transform 0.4s ease;
+}
+.nav {
+  transform: translateY(-10%);
+  opacity: 0;
+  top: 13px;
+  left: -50px;
+  transition: all 0.5s ease-in-out;
+  background: white;
+  width: 150px;
+  border-radius: 5px;
+  transform: translateY(0%);
+  box-shadow: 2px 3px 10px 0 rgba(0, 0, 0, 0.1);
+}
+.nav a {
+  text-align: center;
+  display: block;
+  margin: 20px 0;
+  color: black;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+#toggle:checked ~ .nav {
+  opacity: 1;
+  transform: translateY(10%);
+}
+#toggle:checked ~ .menu {
+  box-shadow: 0 0 0 0 transparent;
+}

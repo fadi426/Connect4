@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { StoreModule } from "../../modules/store/store.module";
 import { AI } from "../../models/players/ai";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-result-screen",
@@ -8,7 +9,7 @@ import { AI } from "../../models/players/ai";
   styleUrls: ["./result-screen.component.css"]
 })
 export class ResultScreenComponent implements OnInit {
-  constructor(private store: StoreModule) {}
+  constructor(private router: Router, private store: StoreModule) {}
 
   gameWinner() {
     if (this.store._board.winner != null && this.store._board.winner != 0)
@@ -16,6 +17,10 @@ export class ResultScreenComponent implements OnInit {
     else if (this.store._board.winner != null && this.store._board.winner == 0)
       return "It's a draw";
     else return null;
+  }
+
+  goHome() {
+    this.router.navigate(['home']);
   }
 
   resetGame() {

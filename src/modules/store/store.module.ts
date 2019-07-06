@@ -9,6 +9,6 @@ import { CommonModule } from '@angular/common';
 })
 export class StoreModule {
   _board = null;
-  _winner = null;
+  _invalidMove = null;
   _timer = null;
 }

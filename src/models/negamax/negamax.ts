@@ -13,27 +13,18 @@ export class Negamax {
       bestMove,
       evaluate = this._evaluate;
 
-    let winningMove = board.getWinningMove(player._number);
-    if (winningMove != -1){
-        console.log("winning move " + winningMove);
-        return winningMove;
-    }
+    let winningMove = this.getWinningMove(player._number, board);
+    if (winningMove != -1) return winningMove;
 
-    let blockingMove = board.getWinningMove(board.nextPlayer()._number);
-    if (blockingMove != -1){
-        console.log("blocking move " + blockingMove);
-        return blockingMove;
-    }
-
+    let blockingMove = this.getWinningMove(board.nextPlayer()._number, board);
+    if (blockingMove != -1) return blockingMove;
 
     let nm = negamax(board, initialDepth, baseAlpha, baseBeta, 1);
-    // console.log(bestMove);
     return bestMove;
 
     function negamax(gameState, depth, alpha, beta, color) {
       if (gameState.getAvailableMoves().length == 0 || depth >= maximumDepth) {
         let s = evaluate.score(gameState, depth) * color;
-        // console.log(s)
         return s;
       }
       let max = -Infinity;
@@ -54,18 +45,11 @@ export class Negamax {
       if (a > max) {
         max = a;
         bestMove = moves[index];
-        if (depth == 0) {
-          console.log(gameState.board);
-          console.log("BOIGBOI = " + values);
-          console.log("BOIGBOI = " + moves);
-        }
       }
-      if (a > alpha) {
-        alpha = a;
-      }
-      if (alpha >= beta) {
-        return alpha;
-      }
+      if (a > alpha) alpha = a;
+
+      if (alpha >= beta) return alpha;
+
       return max;
     }
 
@@ -86,5 +70,63 @@ export class Negamax {
 
       return maxIndex;
     }
+  }
+
+  getWinningMove(playerId, gameBoard) {
+    let rows = gameBoard.rows;
+    let columns = gameBoard.columns;
+    let empty = gameBoard.empty;
+    let board = gameBoard.board;
+
+    for (let r = 0; r < rows; r++) {
+      // iterate rows, bottom to top
+      for (let c = 0; c < columns; c++) {
+        // iterate columns, left to right
+        let player = playerId;
+        if (board[r][c] == empty) {
+          if (r != rows - 1) {
+            if (board[r + 1][c] == empty) continue;
+          }
+
+          if (
+            c + 3 < columns &&
+            player == board[r][c + 1] && // look right
+            player == board[r][c + 2] &&
+            player == board[r][c + 3]
+          )
+            return c;
+          if (
+            c - 3 > 0 &&
+            player == board[r][c - 1] && // look left
+            player == board[r][c - 2] &&
+            player == board[r][c - 3]
+          )
+            return c;
+          if (r + 3 < rows) {
+            if (
+              player == board[r + 1][c] && // look up
+              player == board[r + 2][c] &&
+              player == board[r + 3][c]
+            )
+              return c;
+            if (
+              c + 3 < columns &&
+              player == board[r + 1][c + 1] && // look up & right
+              player == board[r + 2][c + 2] &&
+              player == board[r + 3][c + 3]
+            )
+              return c;
+            if (
+              c - 3 >= 0 &&
+              player == board[r + 1][c - 1] && // look up & left
+              player == board[r + 2][c - 2] &&
+              player == board[r + 3][c - 3]
+            )
+              return c;
+          }
+        }
+      }
+    }
+    return -1;
   }
 }

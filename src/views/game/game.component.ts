@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Board } from '../../models/board/board';
 import { StoreModule } from '../../modules/store/store.module';
-import { Human } from '../../models/players/human';
-import { AI } from '../../models/players/ai';
 
 @Component({
   selector: 'app-game',
@@ -11,11 +9,7 @@ import { AI } from '../../models/players/ai';
 })
 export class GameComponent implements OnInit {
   constructor(private store: StoreModule) { }
-
-  playerOne = new AI("red");
-  playerTwo = new Human("black");
   ngOnInit() {
-    this.store._board = new Board(this.playerOne,this.playerTwo);
   }
 
 }

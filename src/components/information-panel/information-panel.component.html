@@ -1,7 +1,8 @@
 <div *ngIf="gameEnded() == false">
-  <div *ngIf="currentPlayer() == 1" class="status"><span>Current Player: <span class="player-red">Red</span></span></div>
-  <div *ngIf="currentPlayer() == -1" class="status"><span>Current Player: <span>Black</span></span></div>
-  <div *ngIf="isHuman()" class="status">{{timerTime()}}</div>
+  <div *ngIf="currentPlayer() == 1" class="status"><h1>Current Player: <span class="red">Red</span></h1></div>
+  <div *ngIf="currentPlayer() == -1" class="status"><h1>Current Player: Black</h1></div>
+  <h3 *ngIf="isHuman()" class="status">{{timerTime()}}</h3>
+  <h3 *ngIf="store._invalidMove != null" class="status red">{{store._invalidMove}}</h3>
   <!-- <div *ngIf="!isHuman()" class="loader">
     <img src="/assets/spinner.svg">
     <p>Loading movies</p>

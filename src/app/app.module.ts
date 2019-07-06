@@ -8,6 +8,8 @@ import { GameBoardComponent } from '../components/game-board/game-board.componen
 import { StoreModule } from '../modules/store/store.module';
 import { InformationPanelComponent } from '../components/information-panel/information-panel.component';
 import { ResultScreenComponent } from '../components/result-screen/result-screen.component';
+import { NavBarComponent } from '../components/nav-bar/nav-bar.component';
+import { HomeComponent } from '../views/home/home.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { ResultScreenComponent } from '../components/result-screen/result-screen
     GameComponent,
     GameBoardComponent,
     InformationPanelComponent,
-    ResultScreenComponent
+    ResultScreenComponent,
+    NavBarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

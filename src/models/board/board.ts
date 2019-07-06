@@ -18,14 +18,6 @@ export class Board {
     this.chooseRandomStartingPlayer();
   }
 
-  // clone() {
-  //   let clone = new Board(this._players[0], this._players[1]);
-  //   clone._currentPlayer = this._currentPlayer;
-  //   clone._winner = this._winner;
-  //   clone._board = Object.create(this._board);
-  //   clone._lastMove = this._lastMove; 
-  //   return clone;
-  // }
   createNewGrid() {
     this._board = Array(this._rows)
       .fill(null)
@@ -33,11 +25,9 @@ export class Board {
   }
 
   chooseRandomStartingPlayer() {
-    let rand = Math.floor(Math.random() * 2) + 1;
-    this._players.forEach((player) => {
-        if(player._number == 1)
-            this._currentPlayer = player;
-    })
+    let rand = Math.floor(Math.random() * 2);
+
+    this._currentPlayer = this.players[rand];
   }
 
   reset() {
@@ -63,12 +53,15 @@ export class Board {
   playMove(move: number) {
     if (!this.getAvailableMoves().includes(move))
         return false;
+
+    if(this._winner != null)
+      return false;
+    
         
     for(let r = this._rows-1; r >= 0; r--){
       if(this._board[r][move] == this._empty){
         this._board[r][move] = this._currentPlayer._number;
         this._currentPlayer = this.nextPlayer();
-        
         let winner =  this.getWinner();
         if(this.getAvailableMoves().length == 0)
           this._winner = winner;
@@ -110,8 +103,8 @@ export class Board {
   }
 
   getWinner() {
-    for (let r = 0; r < this._rows; r++) { // iterate rows, bottom to top
-        for (let c = 0; c < this._columns; c++) { // iterate columns, left to right
+    for (let r = 0; r < this._rows; r++) {
+        for (let c = 0; c < this._columns; c++) {
             let player = this.board[r][c];
             if (player == this._empty)
                 continue; // don't check empty slots
@@ -120,84 +113,32 @@ export class Board {
                 player == this.board[r][c+1] && // look right
                 player == this.board[r][c+2] &&
                 player == this.board[r][c+3])
-                return this.getPlayerByNumber(player);
+                return this.foundWinner(player);
             if (r + 3 < this._rows) {
                 if (player == this.board[r+1][c] && // look up
                     player == this.board[r+2][c] &&
                     player == this.board[r+3][c])
-                    return this.getPlayerByNumber(player);
+                    return this.foundWinner(player);
                 if (c + 3 < this._columns &&
                     player == this.board[r+1][c+1] && // look up & right
                     player == this.board[r+2][c+2] &&
                     player == this.board[r+3][c+3])
-                    return this.getPlayerByNumber(player);
+                    return this.foundWinner(player);
                 if (c - 3 >= 0 &&
                     player == this.board[r+1][c-1] && // look up & left
                     player == this.board[r+2][c-2] &&
                     player == this.board[r+3][c-3])
-                    return this.getPlayerByNumber(player);
+                    return this.foundWinner(player);
             }
         }
     }
+    this._lastMove = -1;
     return this._empty;
   }
 
-  getWinningMove(playerId) {
-    for (let r = 0; r < this._rows; r++) { // iterate rows, bottom to top
-        for (let c = 0; c < this._columns; c++) { // iterate columns, left to right
-            let player = playerId;
-            if ( this.board[r][c] == this._empty){
-              if(r != this._rows-1){
-                if( this.board[r+1][c] == this._empty)
-                  continue;
-              }
-            
-              if (c + 3 < this._columns &&
-                player == this.board[r][c+1] && // look right
-                player == this.board[r][c+2] &&
-                player == this.board[r][c+3])
-                return c;
-              if (c - 3 > 0 &&
-                player == this.board[r][c-1] && // look left
-                player == this.board[r][c-2] &&
-                player == this.board[r][c-3])
-                return c;
-              if (r + 3 < this._rows) {
-                if (player == this.board[r+1][c] && // look up
-                    player == this.board[r+2][c] &&
-                    player == this.board[r+3][c])
-                    return c;
-                if (c + 3 < this._columns &&
-                    player == this.board[r+1][c+1] && // look up & right
-                    player == this.board[r+2][c+2] &&
-                    player == this.board[r+3][c+3])
-                    return c;
-                if (c - 3 >= 0 &&
-                    player == this.board[r+1][c-1] && // look up & left
-                    player == this.board[r+2][c-2] &&
-                    player == this.board[r+3][c-3])
-                    return c;
-            }
-        }
-        // if ( this.board[r][c] == playerId){          
-        //   if (r - 3 >= 0) {
-        //       if (c - 3 >= 0 &&
-        //           player == this.board[r-1][c-1] && // look down & left
-        //           player == this.board[r-2][c-2] &&
-        //           this._empty == this.board[r-3][c-3])
-        //           return c;
-            
-        //       if (c + 3 < this._columns &&
-        //           player == this.board[r-1][c+1] && // look down & right
-        //           player == this.board[r-2][c+2] &&
-        //           this._empty == this.board[r-3][c+3])
-        //           return c;
-              
-        //   }
-        // }
-      }
-    }
-    return -1;
+  foundWinner(player){
+      this._lastMove = -1;
+      return this.getPlayerByNumber(player);
   }
 
   get rows(): number {
@@ -226,5 +167,9 @@ export class Board {
 
   get lastMove(): number {
     return this._lastMove;
+  }
+
+  get empty(): number {
+    return this._empty;
   }
 }

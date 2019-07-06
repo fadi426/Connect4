@@ -4,7 +4,7 @@ export class Timer {
     _timeString: string;
 
     constructor(time:number) {
-        this._time = time;
+        this._time = time +1;
         this._timeLeft = time;
     }
 
