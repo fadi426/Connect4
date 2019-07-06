@@ -8,7 +8,7 @@ import { StoreModule } from '../../modules/store/store.module';
   styleUrls: ['./game.component.css']
 })
 export class GameComponent implements OnInit {
-  constructor(private store: StoreModule) { }
+  constructor(public store: StoreModule) { }
   ngOnInit() {
   }
 
