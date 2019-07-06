@@ -1,8 +1,9 @@
 import { Player } from "./player";
+import { Board } from "../board/board";
 
 export class Human extends Player {
 
-    doMove(move: string) {
-        //DoMove
+    doMove(board:Board, move:number) {
+        return(board.playMove(move));
     }
 }

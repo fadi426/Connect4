@@ -1,0 +1,10 @@
+<div *ngIf="gameEnded() == false">
+  <div *ngIf="currentPlayer() == 1" class="status"><span>Current Player: <span class="player-red">Red</span></span></div>
+  <div *ngIf="currentPlayer() == -1" class="status"><span>Current Player: <span>Black</span></span></div>
+  <div *ngIf="isHuman()" class="status">{{timerTime()}}</div>
+  <!-- <div *ngIf="!isHuman()" class="loader">
+    <img src="/assets/spinner.svg">
+    <p>Loading movies</p>
+  </div> -->
+
+</div>

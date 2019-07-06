@@ -23,7 +23,7 @@ export class Player {
         }
         else{
             this._name = "Player 2";
-            this._number = 2;
+            this._number = -1;
         }
     }
 }

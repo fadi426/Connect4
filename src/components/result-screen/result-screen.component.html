@@ -1,0 +1,11 @@
+<div *ngIf="gameWinner() != null">
+  <div class="modal">
+    <div class="modal-body">
+      <div class="modal-content">{{gameWinner()}}</div>
+      <div class="modal-footer">
+        <button>Home</button>
+        <button (click)="resetGame()">Restart</button>
+      </div>
+    </div>
+  </div>
+</div>

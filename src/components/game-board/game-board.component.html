@@ -5,10 +5,9 @@
           <div *ngFor="let cell of row; let i = index">
             <div *ngIf="cell == 0" class="connect-four-cell" (click)="move(i)"><span role="img" aria-label="empty-piece" class="piece empty-piece">⚪</span></div>
             <div *ngIf="cell == 1" class="connect-four-cell" (click)="move(i)"><span role="img" aria-label="red-piece" class="piece red-piece">🔴</span></div>
-            <div *ngIf="cell == 2" class="connect-four-cell" (click)="move(i)"><span role="img" aria-label="black-piece" class="piece black-piece">⚫</span></div>
+            <div *ngIf="cell == -1" class="connect-four-cell" (click)="move(i)"><span role="img" aria-label="black-piece" class="piece black-piece">⚫</span></div>
           </div>
         </div>
      </div>
-     <div class="status"><span>Current Player: <span class="player player-red">Red</span></span></div>
   </div>
 </div>
