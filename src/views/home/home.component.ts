@@ -17,13 +17,13 @@ export class HomeComponent implements OnInit {
 
   maxTime = 10;
   singleplayer() {
-    this.store._board = new Board(new AI("red"), new Human("black"));
+    this.store._board = new Board(new AI("Bed"), new Human("Black"));
     this.store._timer = new Timer(this.maxTime);
     this.goToGame();
   }
 
   multiplayer() {
-    this.store._board = new Board(new Human("red"), new Human("black"));
+    this.store._board = new Board(new Human("Red"), new Human("Black"));
     this.store._timer = new Timer(this.maxTime);
     this.goToGame();
   }

@@ -13,7 +13,7 @@ export class ResultScreenComponent implements OnInit {
 
   gameWinner() {
     if (this.store._board.winner != null && this.store._board.winner != 0)
-      return this.store._board.winner._name + " has won the game";
+      return this.store._board.winner._color + " has won the game";
     else if (this.store._board.winner != null && this.store._board.winner == 0)
       return "It's a draw";
     else return null;

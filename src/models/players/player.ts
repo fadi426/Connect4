@@ -17,7 +17,7 @@ export class Player {
     }
 
     setPlayerInfo() {
-        if(this.color == "red"){
+        if(this.color == "Red"){
             this._name = "Player 1";
             this._number = 1;
         }
