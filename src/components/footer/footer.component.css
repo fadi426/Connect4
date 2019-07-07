@@ -1,5 +1,5 @@
 .footer-container {
-    height: 200px;
+    height: 140px;
     width: 100%;
 	background-color: #3D4A55;
     justify-content: center;
@@ -10,7 +10,7 @@
     left: 0;
 }
 .footer-container img {
-    padding-top: 25px;
+    padding-top: 10px;
     width: 100px;
     height: 100px;
     cursor: pointer;
@@ -18,15 +18,18 @@
 .footer-container p {
 	text-align: center;
 	position: absolute;
-	bottom: 20px;
+	bottom: -5px;
 	left: 0;
 	right: 0;
 	color: #a6b3ba;
 	text-transform: uppercase;
 }
-
+.content-container {
+    /* padding-top: 25px; */
+}
+/* 
 @media only screen and (max-width: 600px) {
     .footer-container {
         position: relative;
     }
-}
+} */

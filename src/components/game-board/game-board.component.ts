@@ -37,7 +37,7 @@ export class GameBoardComponent implements OnInit {
         this.store._invalidMove = "Invalid move!";
     }
   }
-
+// 
   firstAiMove(){
     let playedMove = null;
     if(this.store._board._currentPlayer instanceof AI && this.store._board.lastMove == -1){

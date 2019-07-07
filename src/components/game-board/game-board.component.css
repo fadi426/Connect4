@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 180px;
+    /* margin-top: 180px; */
   }
   
   .connect-four-row {
@@ -29,9 +29,6 @@
     .connect-four-cell {
       height: 45px;
       width: 45px;
-    }
-    .connect-four-board {
-      margin-top: 130px;
     }
   }
   
