@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
 
   maxTime = 10;
   singleplayer() {
-    this.store._board = new Board(new AI("Bed"), new Human("Black"));
+    this.store._board = new Board(new AI("Red"), new Human("Black"));
     this.store._timer = new Timer(this.maxTime);
     this.goToGame();
   }
