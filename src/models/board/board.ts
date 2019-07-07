@@ -75,9 +75,11 @@ export class Board {
   }
   
   undoMove() {
-    for(let r = this._rows-1; r >= 0; r--){
-      if(this._board[r][this._lastMove] != this._empty)
+    for(let r = 0; r < this._rows; r++){
+      if(this._board[r][this._lastMove] != this._empty){
         this._board[r][this._lastMove] = this._empty;
+        break;
+      }
     }
     this._currentPlayer = this.nextPlayer();
   }

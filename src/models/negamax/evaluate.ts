@@ -19,39 +19,21 @@ export class Evaluate {
       player2 = 1;
     }
 
-    // if(state.getWinner()._number == 1)
-    //   score = score + 10;
+    if(state.getWinner()._number == 1)
+      score = score + 10000;
 
-    // if(state.getWinner()._number == -1){
-    //   score = score - 10;
-    //   if(depth == 1){
-    //     let jugh = 1;
-    //   }
-    // }
+    if(state.getWinner()._number == -1)
+      score = score - 10000;
 
-    // return score/depth;
     let b = state.board;
     for (let r = 0; r < rows; r++) {
-      // iterate rows, bottom to top
       for (let c = 0; c < columns; c++) {
-        // iterate columns, left to right
         if (b[r][c] == 0) continue;
         // don't check empty slots
         else if (b[r][c] == player1) {
-          // we are checking a computers tile
           if (c == 3 && player1 == b[r][c]) {
             //middle column pieces are worth more
             score = score + 2;
-          }
-
-          if (
-            c + 3 < columns &&
-            player1 == b[r][c + 1] && // look right
-            player1 == b[r][c + 2] &&
-            player1 == b[r][c + 3]
-          ) {
-            //player1 4 in a row horizontally
-            score = score + 10000;
           }
 
           if (
@@ -69,16 +51,6 @@ export class Evaluate {
           }
 
           if (
-            r + 3 < rows &&
-            player1 == b[r + 1][c] && // look up
-            player1 == b[r + 2][c] &&
-            player1 == b[r + 3][c]
-          ) {
-            //player1 4 in a row vertically
-            score = score + 10000;
-          }
-
-          if (
             r + 2 < rows &&
             player1 == b[r + 1][c] && // look up
             player1 == b[r + 2][c]
@@ -90,17 +62,6 @@ export class Evaluate {
           if (r + 1 < rows && player1 == b[r + 1][c]) {
             //player1 2 in a row vertically
             score = score + 2;
-          }
-
-          if (
-            r + 3 < rows &&
-            c + 3 < columns &&
-            player1 == b[r + 1][c + 1] && // look up & right
-            player1 == b[r + 2][c + 2] &&
-            player1 == b[r + 3][c + 3]
-          ) {
-            //player1 4 in a row diagonally
-            score = score + 10000;
           }
 
           if (
@@ -116,17 +77,6 @@ export class Evaluate {
           if (r + 1 < rows && c + 1 < columns && player1 == b[r + 1][c + 1]) {
             //player1 2 in a row diagonally
             score = score + 2;
-          }
-
-          if (
-            r + 3 < rows &&
-            c - 3 >= 0 &&
-            player1 == b[r + 1][c - 1] && // look up & left
-            player1 == b[r + 2][c - 2] &&
-            player1 == b[r + 3][c - 3]
-          ) {
-            //player1 4 in a row diagonally
-            score = score + 10000;
           }
 
           if (
@@ -151,16 +101,6 @@ export class Evaluate {
           }
 
           if (
-            c + 3 < columns &&
-            player2 == b[r][c + 1] && // look right
-            player2 == b[r][c + 2] &&
-            player2 == b[r][c + 3]
-          ) {
-            //player2 4 in a row horizontally
-            score = score - 10000;
-          }
-
-          if (
             c + 2 < columns &&
             player2 == b[r][c + 1] && // look right
             player2 == b[r][c + 2]
@@ -172,16 +112,6 @@ export class Evaluate {
           if (c + 1 < columns && player2 == b[r][c + 1]) {
             //player2 2 in a row horizontally
             score = score - 2;
-          }
-
-          if (
-            r + 3 < rows &&
-            player2 == b[r + 1][c] && // look up
-            player2 == b[r + 2][c] &&
-            player2 == b[r + 3][c]
-          ) {
-            //player2 4 in a row vertically
-            score = score - 10000;
           }
 
           if (
@@ -199,17 +129,6 @@ export class Evaluate {
           }
 
           if (
-            r + 3 < rows &&
-            c + 3 < columns &&
-            player2 == b[r + 1][c + 1] && // look up & right
-            player2 == b[r + 2][c + 2] &&
-            player2 == b[r + 3][c + 3]
-          ) {
-            //player2 4 in a row diagonally
-            score = score - 10000;
-          }
-
-          if (
             r + 2 < rows &&
             c + 2 < columns &&
             player2 == b[r + 1][c + 1] && // look up & right
@@ -222,17 +141,6 @@ export class Evaluate {
           if (r + 1 < rows && c + 1 < columns && player2 == b[r + 1][c + 1]) {
             //player2 2 in a row diagonally
             score = score - 2;
-          }
-
-          if (
-            r + 3 < rows &&
-            c - 3 >= 0 &&
-            player2 == b[r + 1][c - 1] && // look up & left
-            player2 == b[r + 2][c - 2] &&
-            player2 == b[r + 3][c - 3]
-          ) {
-            //player2 4 in a row diagonally
-            score = score - 10000;
           }
 
           if (

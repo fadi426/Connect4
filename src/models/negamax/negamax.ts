@@ -13,17 +13,17 @@ export class Negamax {
       bestMove,
       evaluate = this._evaluate;
 
-    let winningMove = this.getWinningMove(player._number, board);
-    if (winningMove != -1) return winningMove;
+    // let winningMove = this.getWinningMove(player._number, board);
+    // if (winningMove != -1) return winningMove;
 
-    let blockingMove = this.getWinningMove(board.nextPlayer()._number, board);
-    if (blockingMove != -1) return blockingMove;
+    // let blockingMove = this.getWinningMove(board.nextPlayer()._number, board);
+    // if (blockingMove != -1) return blockingMove;
 
     let nm = negamax(board, initialDepth, baseAlpha, baseBeta, 1);
     return bestMove;
 
     function negamax(gameState, depth, alpha, beta, color) {
-      if (gameState.getAvailableMoves().length == 0 || depth >= maximumDepth) {
+      if (gameState.getAvailableMoves().length == 0 || (gameState.getWinner() != 0 && gameState.getWinner() != null) || depth == maximumDepth) {
         let s = evaluate.score(gameState, depth) * color;
         return s;
       }
@@ -32,10 +32,9 @@ export class Negamax {
       var moves = [];
 
       var availableMoves = gameState.getAvailableMoves();
-      let offset = gameState.columns - availableMoves.length;
       for (var i = 0; i < availableMoves.length; i++) {
         let newState = cloneDeep(gameState);
-        newState.playMove(i + offset);
+        newState.playMove(availableMoves[i]);
         values.push(-negamax(newState, depth + 1, -beta, -alpha, -color));
         moves.push(availableMoves[i]);
       }
@@ -45,6 +44,10 @@ export class Negamax {
       if (a > max) {
         max = a;
         bestMove = moves[index];
+        if(depth == 0){
+          console.log(values)
+          console.log(moves)
+        }
       }
       if (a > alpha) alpha = a;
 

@@ -10,6 +10,7 @@ import { InformationPanelComponent } from '../components/information-panel/infor
 import { ResultScreenComponent } from '../components/result-screen/result-screen.component';
 import { NavBarComponent } from '../components/nav-bar/nav-bar.component';
 import { HomeComponent } from '../views/home/home.component';
+import { FooterComponent } from '../components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HomeComponent } from '../views/home/home.component';
     InformationPanelComponent,
     ResultScreenComponent,
     NavBarComponent,
-    HomeComponent
+    HomeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

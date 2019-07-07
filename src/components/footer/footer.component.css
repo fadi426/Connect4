@@ -1,0 +1,32 @@
+.footer-container {
+    height: 200px;
+    width: 100%;
+	background-color: #3D4A55;
+    justify-content: center;
+    display: flex;
+    position: absolute;
+    font-weight: normal;
+    bottom: 0;
+    left: 0;
+}
+.footer-container img {
+    padding-top: 25px;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+.footer-container p {
+	text-align: center;
+	position: absolute;
+	bottom: 20px;
+	left: 0;
+	right: 0;
+	color: #a6b3ba;
+	text-transform: uppercase;
+}
+
+@media only screen and (max-width: 600px) {
+    .footer-container {
+        position: relative;
+    }
+}
