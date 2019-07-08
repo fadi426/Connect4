@@ -27,13 +27,12 @@ export class ResultScreenComponent implements OnInit {
     this.store._board.reset();
     this.store._timer.reset();
 
-    if (this.store._board._currentPlayer._number != 1)
-      this.store._board._currentPlayer = this.store._board.nextPlayer();
-
     if (this.store._board._currentPlayer instanceof AI) {
-      return new Promise(resolve => {
-        resolve(this.store._board._currentPlayer.doMove(this.store._board));
-      });
+      setTimeout(() => {
+        return new Promise(resolve => {
+          resolve(this.store._board._currentPlayer.doMove(this.store._board));
+        });
+      }, 200);
     }
   }
 
