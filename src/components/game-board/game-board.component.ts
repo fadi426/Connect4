@@ -70,8 +70,11 @@ export class GameBoardComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.timerCountDown();
-    this.firstAiMove();
+    setTimeout(() => {
+      this.timerCountDown();
+      this.firstAiMove();
+    }, 200);
+  
   }
 
 }

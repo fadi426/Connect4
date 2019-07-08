@@ -1,6 +1,6 @@
 .page-container {
     position: relative;
-    min-height: 98.6vh;
+    min-height: calc(100vh - 18px);
   }
   
   .content-container {

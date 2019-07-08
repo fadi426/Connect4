@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StoreModule } from '../../modules/store/store.module';
 import { Timer } from '../../models/timer/timer';
 import { Human } from '../../models/players/human';
+import { AI } from '../../models/players/ai';
 
 @Component({
   selector: 'app-information-panel',
@@ -23,14 +24,17 @@ export class InformationPanelComponent implements OnInit {
   }
 
   startTimer() {
-    let seconds = 10;
+    let seconds = 20;
     this.store._timer = new Timer(seconds);
   }
 
   timerTime() {
-    if(this.store._timer == null)
-      return "";
-    return this.store._timer.timeString;
+    if(this.store._board.currentPlayer instanceof AI)
+      return "AI is thinking.."
+    else if(this.isHuman)
+      return this.store._timer.timeString;
+    else(this.store._timer == null)
+      return " ";
   }
 
   isHuman(){

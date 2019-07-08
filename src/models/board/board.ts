@@ -74,14 +74,15 @@ export class Board {
     }
   }
   
-  undoMove() {
+  undoMove(colum) {
     for(let r = 0; r < this._rows; r++){
-      if(this._board[r][this._lastMove] != this._empty){
-        this._board[r][this._lastMove] = this._empty;
+      if(this._board[r][colum] != this._empty){
+        this._board[r][colum] = this._empty;
+        this._currentPlayer = this.nextPlayer();
+        this._winner = null;
         break;
       }
     }
-    this._currentPlayer = this.nextPlayer();
   }
 
   nextPlayer(){

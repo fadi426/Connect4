@@ -37,6 +37,11 @@ button:hover {
   padding: 15px;
   font-size: x-large;
 }
+
+.modal-content h1 {
+  text-align: center;
+}
+
 .modal-footer {
   overflow: hidden;
 }
